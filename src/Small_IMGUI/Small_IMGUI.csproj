@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Shaders\GLSL\imgui-frag.glsl" />
+	  <None Remove="Shaders\GLSL\imgui-vertex.glsl" />
+	  <None Remove="Shaders\HLSL\imgui-frag.hlsl.bytes" />
+	  <None Remove="Shaders\HLSL\imgui-vertex.hlsl.bytes" />
+	  <None Remove="Shaders\Metal\imgui-frag.metallib" />
+	  <None Remove="Shaders\Metal\imgui-vertex.metallib" />
+	  <None Remove="Shaders\SPIR-V\imgui-frag.spv" />
+	  <None Remove="Shaders\SPIR-V\imgui-vertex.spv" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Veldrid" Version="4.9.0" />
+		<PackageReference Include="Veldrid.StartupUtilities" Version="4.9.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ImGui.NET\ImGui.NET.csproj" />
+		<ProjectReference Include="..\ImGuizmo.NET\ImGuizmo.NET.csproj" />
+		<ProjectReference Include="..\ImNodes.NET\ImNodes.NET.csproj" />
+		<ProjectReference Include="..\ImPlot.NET\ImPlot.NET.csproj" />
+		<ProjectReference Include="..\TestDotNetStandardLib\TestDotNetStandardLib.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="$(RepositoryRootDirectory)/deps/cimgui/win-x64/cimgui.dll" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="$(RepositoryRootDirectory)/deps/cimgui/osx/cimgui.dylib" CopyToOutputDirectory="PreserveNewest" />
+		<Content Include="$(RepositoryRootDirectory)/deps/cimgui/linux-x64/cimgui.so" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Shaders/GLSL/imgui-vertex.glsl" LogicalName="imgui-vertex.glsl" />
+		<EmbeddedResource Include="Shaders/GLSL/imgui-frag.glsl" LogicalName="imgui-frag.glsl" />
+		<EmbeddedResource Include="Shaders/HLSL/imgui-vertex.hlsl.bytes" LogicalName="imgui-vertex.hlsl.bytes" />
+		<EmbeddedResource Include="Shaders/HLSL/imgui-frag.hlsl.bytes" LogicalName="imgui-frag.hlsl.bytes" />
+		<EmbeddedResource Include="Shaders/SPIR-V/imgui-vertex.spv" LogicalName="imgui-vertex.spv" />
+		<EmbeddedResource Include="Shaders/SPIR-V/imgui-frag.spv" LogicalName="imgui-frag.spv" />
+		<EmbeddedResource Include="Shaders/Metal/imgui-vertex.metallib" LogicalName="imgui-vertex.metallib" />
+		<EmbeddedResource Include="Shaders/Metal/imgui-frag.metallib" LogicalName="imgui-frag.metallib" />
+	</ItemGroup>
+
+</Project>
