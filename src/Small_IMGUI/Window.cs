@@ -84,7 +84,7 @@ namespace Small_IMGUI
             _gd.Dispose();
         }
 
-        public void SubmitUI()
+        public virtual void SubmitUI()
         {
             // Demo code adapted from the official Dear ImGui demo program:
             // https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx11/main.cpp#L172

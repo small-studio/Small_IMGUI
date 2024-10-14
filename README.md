@@ -1,3 +1,68 @@
+# Inclure Small_IMGUI dans un projet visual studio c#
+
+## 1. Récupérer le code de Small_IMGUI
+
+### Option "projet à l'arrache"
+
+cloner le repo Small_IMGUI directement dans le dossier de votre projet :
+```sh
+cd c:\mon_projet
+mkdir deps
+cd deps
+git clone -b small https://github.com/small-studio/Small_IMGUI
+```
+
+### Option "projet clean"
+ajouter le repo Small_IMGUI en submodule. Cela permet de se mettre à jour si nécessaire, de pusher des modifs sur Small_IMGUI directement depuis le projet, etc.
+```sh
+cd c:\mon_projet
+git submodule add -b small https://github.com/small-studio/Small_IMGUI deps/Small_IMGUI
+```
+
+## 2. Inclure le `.csproj` Small_IMGUI dans votre solution Visual
+
+- Dans votre solution visual Faire `Fichier/Ajouter/Projet Existant`
+- Selectionner le fichier .csproj de Small_IMGUI que vous avez cloné ou ajouté en submodule. Il doit se trouver ici `mon_projet\deps\Small_IMGUI\src\Small_IMGUI\Small_IMGUI.csproj`
+- une nouveau projet intitulé `Small_IMGUI` devrait maintenant apparaître dans votre solution
+- faire clic droit dessus, puis `Ouvrir dans Terminal`
+- exécuter la commande suivante : `dotnet build`
+- Ajouter Small_IMGUI en dépendance du projet où vous souhaitez l'utiliser :
+    - Clic droit sur votre projet cible, puis `Dépendences de build/Dépendances du projet`
+        - cocher Small_IMGUI
+        - cliquer sur OK
+    - Clic droit sur votre projet cible, puis `Ajouter/Référence de projet...`
+        - cocher Small_IMGUI
+        - cliquer sur OK
+
+Vous pouvez maintenant instantier dans votre code une nouvelle fenêtre Small_IMGUI. Pour ce faire :
+- Créer une classe qui dérive de `Small_IMGUI.Window`
+- overrider la fonction `SubmitUI`
+- L'instantier dans votre fonction `Main`, ou tout autre fonction en fonction de vos besoins
+- **Attention :** la fonction `Run()` est bloquante tant que la fenêtre n'est pas fermée
+
+```c#
+public class MyWindow : Small_IMGUI.Window
+{
+    public override void SubmitUI()
+    {
+        // écrivez le code Imgui que vous souhaitez ici !!!
+        ImGui.Text("Hello, world!");
+
+        // vous pouvez vous inspirer du code a l'interieur de la fonction suivante : 
+        // base.SubmitUI();
+    }
+}
+
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        MyWindow window = new MyWindow();
+        window.Run();
+    }
+}
+```
+
 # ImGui.NET
 
 This is a .NET wrapper for the immediate mode GUI library, Dear ImGui (https://github.com/ocornut/imgui). ImGui.NET lets you build graphical interfaces using a simple immediate-mode style. ImGui.NET is a .NET Standard library, and can be used on all major .NET runtimes and operating systems.
