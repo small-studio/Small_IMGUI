@@ -77,6 +77,8 @@ namespace Small_IMGUI
                 _gd.SwapBuffers(_gd.MainSwapchain);
             }
 
+            OnDestroy();
+
             // Clean up Veldrid resources
             _gd.WaitForIdle();
             _controller.Dispose();
@@ -84,7 +86,7 @@ namespace Small_IMGUI
             _gd.Dispose();
         }
 
-        public virtual void SubmitUI()
+        protected virtual void SubmitUI()
         {
             // Demo code adapted from the official Dear ImGui demo program:
             // https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx11/main.cpp#L172
@@ -232,6 +234,11 @@ namespace Small_IMGUI
             ImGui.GetWindowDrawList().AddText(ImGui.GetCursorScreenPos(), uint.MaxValue, $"{ImGui.CalcTextSize("h")}");
             ImGui.NewLine();
             ImGui.TextUnformatted("TextUnformatted now passes end ptr but isn't cut off");
+        }
+
+        protected virtual void OnDestroy()
+        {
+
         }
     }
 }
