@@ -58,6 +58,9 @@ namespace Small_IMGUI
             var stopwatch = Stopwatch.StartNew();
             float deltaTime = 0f;
             // Main application loop
+
+            OnStart();
+
             while (_window.Exists)
             {
                 deltaTime = stopwatch.ElapsedTicks / (float)Stopwatch.Frequency;
@@ -84,6 +87,11 @@ namespace Small_IMGUI
             _controller.Dispose();
             _cl.Dispose();
             _gd.Dispose();
+        }
+
+        protected virtual void OnStart()
+        {
+
         }
 
         protected virtual void SubmitUI()
