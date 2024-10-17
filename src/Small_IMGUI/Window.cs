@@ -1,12 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
 using ImGuiNET;
-using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Numerics;
-using ImPlotNET;
-using System.Runtime.CompilerServices;
 using TestDotNetStandardLib;
 using Veldrid;
 using Veldrid.Sdl2;
@@ -36,11 +30,11 @@ namespace Small_IMGUI
 
         static void SetThing(out float i, float val) { i = val; }
 
-        public void Run()
+        public void Run(string WindowName)
         {
             // Create window, GraphicsDevice, and all resources necessary for the demo.
             VeldridStartup.CreateWindowAndGraphicsDevice(
-                new WindowCreateInfo(50, 50, 1280, 720, WindowState.Normal, "ImGui.NET Sample Program"),
+                new WindowCreateInfo(50, 50, 1280, 720, WindowState.Normal, WindowName),
                 new GraphicsDeviceOptions(true, null, true, ResourceBindingModel.Improved, true, true),
                 out _window,
                 out _gd);
