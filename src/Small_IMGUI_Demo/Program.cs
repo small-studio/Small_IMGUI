@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Small_IMGUI.Window window = new Small_IMGUI.Window();
-            window.Run();
+            window.Run("Small_IMGUI_Demo");
         }
     }
 }
